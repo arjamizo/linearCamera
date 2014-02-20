@@ -1,0 +1,68 @@
+{
+	"build_systems":
+	[
+		{
+			"cmd":
+			[
+				"sh.exe", //This command is not searched in path below. This program has to be provided via environment in which Sublime is started
+				"-c",
+				// "echo \\$PATH; pwd; mingw32-make Obj/taskFlyport.o"
+				"echo \\$PATH; pwd; ( which mingw32-make && which pic30-gcc && mingw32-make -j 4 ) || echo error"
+				// "pic30-gcc -mcpu=24FJ256GA106 -x c -c taskFlyport.c -o Obj/taskFlyport.o -Wall -mlarge-code -mlarge-data -I. -I./.FlyportLibs -I./.FlyportLibs/Include -I./.Microchip -I./.Microchip/%temp% -I./.Microchip/Include -I./.Microchip/Include/TCPIP -IStack -I./.Microchip/TCPIP -IStack -I./.Microchip/TCPIP -IStack/WiFi -I./.picincludes -I./.TCPIPStack -I./.TCPIPStack/WiFi -I./Libs -I./Libs/ExternalLib -I./Libs/ExternalLib/Include -I./Libs/Flyport -Ilibs -I./Libs/Flyport -Ilibs/Include -I./Libs/FreeRTOS -I./Libs/FreeRTOS/include"//hex -j 2
+			],
+    		"file_regex": "^[ ]*(...*?):([0-9]*)",
+    		"selector": "source.c,source.json", 
+			"name": "Make hex",
+			"path": "/c/CodeBlocks/MinGW/bin:/c/Program Files/Git/bin-YouHaveToHaveThisPathInYourPath:/c/Program Files/Microchip/MPLAB C30/bin:$path",
+			// "path": "/c/CodeBlocks/MinGW/bin:/c/Program Files/CodeBlocks/MinGW/bin:/c/Program Files/Git/bin/:/c/Program Files/Microchip/MPLAB C30/bin:/bin:/bin:/usr/local/bin:/mingw/bin:/c/Windows/System32:\\$PATH",
+			"working_dir": "${project_path:${folder}}"
+		}
+		,{
+			"cmd":
+			[
+				"c:\\Program Files\\Git\\bin\\sh.exe",
+				"-c",
+				"echo \\$PATH; pwd; /c/Program\\ Files/CodeBlocks/MinGW/bin/mingw32-make -j 1 links"
+			],
+    		"selector": "source.c", 
+			"name": "Make linksToFoldersWithoutSpaces",
+			"path": "/c/WinAVR-20100110/utils/bin:/bin:/usr/local/bin:/mingw/bin:/c/Windows/System32:\\$PATH",
+			"working_dir": "${project_path:${folder}}"
+		}
+		,{
+			"cmd": [
+				"c:\\Program Files\\Git\\bin\\sh.exe",
+				"-c",
+				"echo \\$PATH; pwd; which rm; /c/Program\\ Files/CodeBlocks/MinGW/bin/mingw32-make clean"
+				]
+			,"name": "Make clean"
+			,"path": "/bin:/usr/local/bin:/mingw/bin"
+			,"working_dir": "${project_path:${folder}}"
+		}
+		,{
+			"cmd": ["sudo.bat","notepad","c:\\Program Files\\FlyPort IDE\\Microchip\\TCPIP Stack\\HTTP2.c"]
+			,"name": "Edit HTTP2.c as admin (add headers allowing fetching data from all servers)"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "/C/Program Files/Microchip/MPLAB C30"
+		},
+		{
+			"path": "/C/Program Files/FlyPort IDE/Microchip"
+		}
+	],
+	"settings":
+	{
+		"tab_size": 4,
+		"translate_tabs_to_spaces": true,
+		"use_tab_stops": false
+	}
+}
