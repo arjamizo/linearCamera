@@ -22,7 +22,8 @@
 			[
 				"c:\\Program Files\\Git\\bin\\sh.exe",
 				"-c",
-				"echo \\$PATH; pwd; /c/Program\\ Files/CodeBlocks/MinGW/bin/mingw32-make -j 1 links"
+				///c/Program\\ Files/CodeBlocks/MinGW/bin/
+				"echo \\$PATH; pwd; which mingw32-make; mingw32-make -j 1 links || echo 'you have to have mingw32-make in your path. Setting internal ST3 PATH variables does not fix the problem.'"
 			],
     		"selector": "source.c", 
 			"name": "Make linksToFoldersWithoutSpaces",

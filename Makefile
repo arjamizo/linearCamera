@@ -12,11 +12,11 @@ sudo.bat: a
 	echo -e 'mkdir %root%\nset tmp1=%root%sudo.tmp.vbs\nset tmp2=%root%asadmin.bat\necho %tmp1% %tmp2%\ndel %tmp1%\ndel %tmp2%\necho Set UAC = CreateObject^("Shell.Application"^) > %tmp1%\necho Running in CD=%cd%\necho UAC.ShellExecute "%tmp2%", "", "", "runas", 1 >> %tmp1%\necho cd %cd% > %tmp2%\nrem http://www.robvanderwoude.com/ntcall.php\necho %* >> %tmp2%\n%tmp1%\n' >> sudo.bat
 
 checkDirs: 
-	ls .FlyportLibs
+	ls .FlyportLibs || echo 'probably project was not not created in this folder with OpenPicusIDE'
 	ls .TCPIPStack
 	ls .Microchip
 	ls .picincludes
-	which pic30-gcc #check whether there is compiler in PATH variable
+	which pic30-gcc || echo 'you should have something simliar to c:\Program Files\Microchip\MPLAB C30\bin in PATH variable' #check whether there is compiler in PATH variable
 
 .TCPIPStack:
 	# cmd "//c" 'mkdir tmp' || echo 'tmp exists'
